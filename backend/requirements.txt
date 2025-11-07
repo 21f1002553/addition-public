@@ -4,3 +4,26 @@ Flask-Migrate==4.0.5
 Flask-CORS==4.0.0
 python-dotenv==1.0.0
 uuid==1.30
+numpy == 2.2.4
+pandas == 2.2.3
+python-dotenv
+scipy==1.15.2
+PyMySQL==1.1.1
+torch
+transformers
+sentence-transformers
+faiss-cpu
+chromadb==1.1.1
+spacy
+langchain
+langchain-community
+sentencepiece
+nltk
+cryptography
+datasets
+google-generativeai
+openai
+langchain-openai
+docx2txt
+python-docx
+unstructured

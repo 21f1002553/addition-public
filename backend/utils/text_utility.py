@@ -1,8 +1,12 @@
+# backend/utils/text_utility.py
+
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.document_loaders import Docx2txtLoader 
 from langchain_community.document_loaders import PyPDFLoader
 import re
 import json
+# ⭐ ADD THIS IMPORT
+from typing import Dict, Any
 
 class TextUtility:
 
@@ -10,6 +14,7 @@ class TextUtility:
     def extract_text_from_pdf(pdf_path):
         loader = PyPDFLoader(pdf_path)
         text = loader.load()
+        content = ""  # ⭐ FIX: Initialize content variable
         for i in range(len(text)):
             content += text[i].page_content
         return content
@@ -21,17 +26,16 @@ class TextUtility:
         return docs
     
     @staticmethod
-    def remove_pii(text: str):
-        s = re.sub(r'[\w\.-]+@[\w\.-]+\.\w+','[EMAIL]', s)
-        s = re.sub(r'\+?\d[\d\s\()]{7,}\d', '[PHONE]', s)
-        s = re.sub(r'https?://\S+|www\.\S+', '[URL]', s)
-        return s.strip()
+    def remove_pii(text: str):  # ⭐ FIX: Change parameter name from 's' to 'text'
+        text = re.sub(r'[\w\.-]+@[\w\.-]+\.\w+','[EMAIL]', text)
+        text = re.sub(r'\+?\d[\d\s\()]{7,}\d', '[PHONE]', text)
+        text = re.sub(r'https?://\S+|www\.\S+', '[URL]', text)
+        return text.strip()
     
     @staticmethod
     def remove_json_marker(text: str):
         cleaned_json=text.strip('`json \n')
         return json.loads(cleaned_json)
-
 
     @staticmethod
     def format_resume_text(resume: Dict[str, Any]) -> str:

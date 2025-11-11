@@ -150,3 +150,7 @@ logs/
 # Temporary files
 *.tmp
 *.temp
+
+# upload
+uploads/receipts/*
+!uploads/receipts/.gitkeep
